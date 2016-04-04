@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 public class MainMenu extends AppCompatActivity {
 
+    // comement
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
