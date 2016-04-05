@@ -18,6 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:label="Official Documents" android:name=".OfficialDocuments"></activity>
+        <activity android:label="Nek Number" android:name=".NekNumber"></activity>
+        <activity android:label="Neptun Code" android:name=".NeptunCode"></activity>
+        <activity android:label="Registration Office" android:name=".RegistrationOffice"></activity>
+        <activity android:label="Student Card" android:name=".StudentCard"></activity>
+        <activity android:label="Wifi Connection" android:name=".WifiConnection"></activity>
+
     </application>
 
 </manifest>
