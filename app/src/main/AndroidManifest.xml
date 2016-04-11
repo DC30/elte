@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/appicon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -18,13 +18,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="Official Documents" android:name=".OfficialDocuments"></activity>
-        <activity android:label="Nek Number" android:name=".NekNumber"></activity>
-        <activity android:label="Neptun Code" android:name=".NeptunCode"></activity>
-        <activity android:label="Registration Office" android:name=".RegistrationOffice"></activity>
-        <activity android:label="Student Card" android:name=".StudentCard"></activity>
-        <activity android:label="Wifi Connection" android:name=".WifiConnection"></activity>
-
+        <activity
+            android:name=".NekNumber"
+            android:label="Nek Number" />
+        <activity
+            android:name=".NeptunCode"
+            android:label="Neptun Code" />
+        <activity
+            android:name=".RegistrationOffice"
+            android:label="Registration Office" />
+        <activity
+            android:name=".StudentCard"
+            android:label="Student Card" />
+        <activity
+            android:name=".WifiConnection"
+            android:label="Wifi Connection" />
+        <activity
+            android:name=".ResidencePermitMenu"
+            android:label="@string/title_activity_residence_permit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ApplicationForm"
+            android:label="@string/title_activity_application_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UniversityMenu"
+            android:label="@string/title_activity_university_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LifeStyleMenu"
+            android:label="@string/title_activity_life_style_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

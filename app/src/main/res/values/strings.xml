@@ -1,4 +1,12 @@
 <resources>
-    <string name="app_name">Elte_CkeckIn</string>
+    <string name="app_name">Elte-CheckIn</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_residence_permit">Residence Permit Menu</string>
+    <string name="title_activity_application_form">Application Form</string>
+    <string name="title_activity_university_menu">University Menu</string>
+    <string name="title_activity_life_style_menu">Life Style Menu</string>
 </resources>

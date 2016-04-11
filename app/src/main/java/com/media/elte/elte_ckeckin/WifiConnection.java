@@ -1,6 +1,5 @@
 package com.media.elte.elte_ckeckin;
 
-import android.app.TabActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -10,6 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 public class WifiConnection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.od_uni_wificonnection);
+        setContentView(R.layout.wificonnection);
     }
 }

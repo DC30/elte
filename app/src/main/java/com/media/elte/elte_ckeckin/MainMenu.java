@@ -1,9 +1,8 @@
 package com.media.elte.elte_ckeckin;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,12 +11,15 @@ import android.view.MenuItem;
 
 public class MainMenu extends AppCompatActivity {
 
-    //willcomment
-    // comement
+    Intent i = new Intent();
+    protected static ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -42,11 +44,25 @@ public class MainMenu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //open official documents activity view
-    public void onClickOfficialDocuments(View button)
+    public void onClickAnyButton(View button)
     {
-        Intent i = new Intent();
-        i.setClass(this,OfficialDocuments.class);
-        startActivity(i);
+        mProgressDialog = ProgressDialog.show(this, "Please wait", "Loading menu...", true);
+        switch (button.getId())
+        {
+            case R.id.btnResidencePermit:
+                i.setClass(this,ResidencePermitMenu.class);
+                startActivity(i);
+                break;
+            case R.id.btnUniversity:
+                i.setClass(this,UniversityMenu.class);
+                startActivity(i);
+                break;
+            case R.id.btnLifeStyle:
+                i.setClass(this,LifeStyleMenu.class);
+                startActivity(i);
+                break;
+            default:
+                mProgressDialog.dismiss();
+        }
     }
 }

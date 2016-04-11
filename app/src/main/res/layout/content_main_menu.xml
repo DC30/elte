@@ -10,32 +10,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.media.elte.elte_ckeckin.MainMenu"
-    tools:showIn="@layout/activity_main_menu">
+    tools:showIn="@layout/activity_main_menu"
+    android:background="#c1c1c1">
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:stretchColumns="*"
-        android:weightSum="2.5"
-        android:layout_centerInParent="true">
+        android:weightSum="2.75"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="15dp">
 
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_weight="0.9"
+            android:layout_marginBottom="15dp">
+
+            <ImageButton
+                android:id="@+id/btnResidencePermit"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="Residence Permit"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:onClick="onClickAnyButton"
+                android:src="@drawable/resident"
+                android:scaleType="fitCenter" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:layout_marginBottom="15dp">
 
-            <Button
-                android:id="@+id/btnDocuments"
+            <ImageButton
+                android:id="@+id/btnUniversity"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="Official Documents"
                 android:layout_weight="1"
-                android:textSize="40dp"
-                android:textColor="@color/colorWhite"
-                android:background="@color/colorPrimary"
-                android:onClick="onClickOfficialDocuments" />
+                android:background="@color/colorWhite"
+                android:onClick="onClickAnyButton"
+                android:src="@drawable/university"
+                android:scaleType="fitCenter" />
         </TableRow>
 
         <TableRow
@@ -44,15 +64,15 @@
             android:layout_height="fill_parent"
             android:layout_weight="1" >
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnLifeStyle"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Life Style"
-                android:textSize="40dp"
-                android:textColor="@color/colorWhite"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorWhite"
+                android:src="@drawable/lifestyle"
+                android:scaleType="fitCenter"
+                android:onClick="onClickAnyButton"/>
         </TableRow>
     </TableLayout>
 </RelativeLayout>
