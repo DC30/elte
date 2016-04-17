@@ -59,6 +59,7 @@ public class MainMenu extends AppCompatActivity {
                 break;
             case R.id.btnLifeStyle:
                 i.setClass(this,LifeStyleMenu.class);
+
                 startActivity(i);
                 break;
             default:

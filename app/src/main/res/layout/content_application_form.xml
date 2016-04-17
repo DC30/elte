@@ -11,13 +11,28 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.media.elte.elte_ckeckin.ApplicationForm"
     tools:showIn="@layout/activity_application_form">
+    <LinearLayout
 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:weightSum="2"
+        android:orientation="vertical"
+      >
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Content"
-        android:id="@+id/textView6"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/tvInfo"
+        android:layout_weight="1"
+    />
+    <com.google.android.gms.maps.MapView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/map"/>
+
+    </LinearLayout>
 </RelativeLayout>
