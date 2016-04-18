@@ -2,6 +2,7 @@ package com.media.elte.elte_ckeckin;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -35,17 +36,32 @@ public class ApplicationForm extends AppCompatActivity implements LocationListen
     private GoogleMap map;
     MapView mMapView;
     LatLng sourcePosition, destPosition;
+    String title, info ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application_form);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
+
+        //here we retrieve the intent and bundle that was sent from the listview
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        destPosition= new LatLng(extras.getDouble("LAT"),
+                extras.getDouble("LNG"));
+        title = extras.getString("TITLE");
+        info = extras.getString("INFO");
+        // this is used to set the title
+        if(title != null)
+        toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
 
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         tvInfo = (TextView) findViewById(R.id.tvInfo);
+        if (info != null )
+        tvInfo.setText(info);
 
         mMapView = (MapView) findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
@@ -73,14 +89,17 @@ public class ApplicationForm extends AppCompatActivity implements LocationListen
         if(location != null ) {
             // Do something with the recent location fix
             //  otherwise wait for the update below
-            tvInfo.setText("Location !!! Changed"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
+          //  tvInfo.setText("Location !!! Changed"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
+
         }
         else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
         }
-        sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
-        destPosition = new LatLng( 47.499425, 19.055139);
+       sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
+        // this was used to test location from uni
+     //   sourcePosition= new LatLng(47.472594,19.059733);
+
         route(sourcePosition,destPosition);
     }
 
@@ -103,7 +122,7 @@ public class ApplicationForm extends AppCompatActivity implements LocationListen
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(rectLine.getPoints().get(0), 15.0f));
 
 
-                    tvInfo.setText("DURATION" + md.getDurationText(doc));
+                  //  tvInfo.setText("DURATION" + md.getDurationText(doc));
 
                 } catch (Exception e) {
                     e.printStackTrace();

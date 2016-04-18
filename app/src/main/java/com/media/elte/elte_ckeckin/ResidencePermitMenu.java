@@ -1,24 +1,19 @@
 package com.media.elte.elte_ckeckin;
 
-import android.annotation.TargetApi;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class ResidencePermitMenu extends AppCompatActivity {
     ResidencePermitMenu thisInstance;
     Intent i;
+//this is bundle is used to send bundle with the intent and it is initialized same as when intent is
+    Bundle extras;
     ListView listview;
     String[] text;
     Integer[] imageId;
@@ -107,6 +102,7 @@ public class ResidencePermitMenu extends AppCompatActivity {
 
     protected void populateMenuStep2() {
         i = new Intent();
+        extras = new Bundle();
         listview = (ListView) findViewById(R.id.listView);
         CustomAdapter adapter = new CustomAdapter(this, text, imageId);
         listview = (ListView) findViewById(R.id.listView);
@@ -118,10 +114,31 @@ public class ResidencePermitMenu extends AppCompatActivity {
                 switch (text[+position]) {
                     case "Application Form":
                         i.setClass(thisInstance, ApplicationForm.class);
+                        extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Application form");
+                        extras.putDouble("LAT", 47.499425);
+                        extras.putDouble("LNG",19.055139);
+                        extras.putString("INFO","this is a long text just to see how it work" +
+                                "  \nthis is a long text just to see how it work \n" +
+                                "this is a long text just to see how it work\n" +
+                                "this is a long text just to see how it work\n" +
+                                "this is a long text just to see how it work\n" +
+                                "this is a long text just to see how it work ");
+                       // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
-                    case "Data-Sheet":
+                    case "Data Sheet":
                         i.setClass(thisInstance, ApplicationForm.class);
+                        extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Data Sheet");
+                        extras.putDouble("LAT", 47.499425);
+                        extras.putDouble("LNG",19.055139);
+                        extras.putString("INFO","test 2 ");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "Passport":
