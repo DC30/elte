@@ -145,9 +145,8 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
                         // this is used same as map key <=> value
-                        extras.putString("TITLE","Passport");
-                        extras.putDouble("LAT", 47.500061);
-                        extras.putDouble("LNG",19.055139);
+                        extras.putString("TITLE", "Passport");
+                        extras.putString("SHOWMAP", "FALSE");
                         extras.putString("INFO", "Bring your passport and take a copy of it. ");
                         // here the bundle is attached to the intent
                         i.putExtras(extras);
@@ -158,9 +157,10 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         extras.clear();
                         // this is used same as map key <=> value
                         extras.putString("TITLE","Photo");
+                        extras.putString("SHOWMAP", "TRUE");
                         extras.putDouble("LAT", 47.500061);
                         extras.putDouble("LNG",19.080257);
-                        extras.putString("INFO", "You must bring your photo or you can take the picture at the immigration office. Note that it is not free ");
+                        extras.putString("INFO", "You have to provide a visa photo in which your face can be shown clearly or you can take the picture at the immigration office. Note that it is not free ");
                         // here the bundle is attached to the intent
                         i.putExtras(extras);
                         startActivity(i);
@@ -169,10 +169,9 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
                         // this is used same as map key <=> value
-                        extras.putString("TITLE","School attendance certificate");
-                        extras.putDouble("LAT", 47.500061);
-                        extras.putDouble("LNG",19.055139);
-                        extras.putString("INFO", "This document must give you the coordinator of you faculty or coordinator of you bachelor or master degree. Please ask them for this document. ");
+                        extras.putString("TITLE", "School attendance certificate");
+                        extras.putString("SHOWMAP", "FALSE");
+                        extras.putString("INFO", "This document would be provided to you by the coordinator of you faculty or coordinator of your bachelor or master degree. Please ask them for this document. ");
                         // here the bundle is attached to the intent
                         i.putExtras(extras);
                         startActivity(i);
@@ -219,9 +218,10 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         extras.clear();
                         // this is used same as map key <=> value
                         extras.putString("TITLE","Voluntary Leave Declaration");
+                        extras.putString("SHOWMAP","TRUE");
                         extras.putDouble("LAT", 47.492356);
                         extras.putDouble("LNG",19.0560739);
-                        extras.putString("INFO","Fill the form when you are at the Office of Immigration and Nationality");
+                        extras.putString("INFO","Fill the form provided at the Office of Immigration and Nationality");
                         // here the bundle is attached to the intent
                         i.putExtras(extras);
                         startActivity(i);
@@ -252,12 +252,13 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         extras.clear();
                         // this is used same as map key <=> value
                         extras.putString("TITLE","Receive your residence permit ");
+                        extras.putString("SHOWMAP","TRUE");
                         extras.putDouble("LAT", 47.492356);
                         extras.putDouble("LNG",19.0560739);
                         extras.putString("INFO", "• This is a declaration of how would you like to receive your residence permit. " +
                                 "<br>" +
-                                "<b>Collection. – </b> have to go back to the office and collect it. For students that had the visa from their home country, generally the residence permit is ready, if not ready, you should pick it up later. <br>" +
-                                "<b>Posta. -</b> You can receive a form and fill it at Office of Immigration and Nationality. Then when the resident card is ready, they send it your home.");
+                                "<b>Collection. – </b> You have to go back to the office and collect it. For students that had the visa from their home country, generally the residence permit is ready, if not ready, you should pick it up on a specified date. (recommended choice). <br>" +
+                                "<b>Posta. -</b> You would receive a form and fill it at Office of Immigration and Nationality. Then when the resident card is ready, they send it your home address specified. ( be careful to double check the address written).");
                         // here the bundle is attached to the intent
                         i.putExtras(extras);
                         startActivity(i);
