@@ -1,45 +1,44 @@
 package com.media.elte.elte_ckeckin;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 
-public class GenericMaps extends AppCompatActivity implements LocationListener {
+public class GenericMaps extends ActionBarActivity implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    LocationManager mLocationManager;
     private TextView tvInfo;
 
     private GoogleMap map;
     MapView mMapView;
     LatLng sourcePosition, destPosition;
-    String title, info ;
-
+    String title, info;
+    GoogleApiClient mGoogleApiClient;
+    Location mLastLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,66 +46,38 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
         setContentView(R.layout.activity_application_form);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-
         //here we retrieve the intent and bundle that was sent from the listview
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        destPosition= new LatLng(extras.getDouble("LAT"),
+        destPosition = new LatLng(extras.getDouble("LAT"),
                 extras.getDouble("LNG"));
         title = extras.getString("TITLE");
         info = extras.getString("INFO");
         // this is used to set the title
-        if(title != null)
-         toolbar.setTitle(title);
+        if (title != null)
+            toolbar.setTitle(title);
         setSupportActionBar(toolbar);
 
-        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         tvInfo = (TextView) findViewById(R.id.tvInfo);
         tvInfo.setMovementMethod(LinkMovementMethod.getInstance());
-        if (info != null )
+       if (info != null )
         tvInfo.setText(Html.fromHtml(info));
 
-        mMapView = (MapView) findViewById(R.id.map);
-        mMapView.onCreate(savedInstanceState);
-        mMapView.onResume();// needed to get the map to display immediately
-        try {
-            MapsInitializer.initialize(getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        initiateMap();
-
-       if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if(location != null ) {
-            // Do something with the recent location fix
-            //  otherwise wait for the update below
-          // tvInfo.setText("Location !!! Changed"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
-          //sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
-        }
-        else {
-            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
-        }
-     //
-        // this was used to test location from uni
-  //    sourcePosition= new LatLng(47.472594,19.059733);
-        sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
-        if (sourcePosition != null && destPosition != null)
-           route(sourcePosition,destPosition);
+        initiateMap(savedInstanceState);
+         createGoogleApi();
 
     }
+
+    private void createGoogleApi() {
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+    }
+
 
     protected void route(LatLng sourcePosition, LatLng destPosition) {
 
@@ -127,7 +98,7 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(rectLine.getPoints().get(0), 15.0f));
 
 
-                  //  tvInfo.setText("DURATION" + md.getDurationText(doc));
+                    //  tvInfo.setText("DURATION" + md.getDurationText(doc));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -140,44 +111,65 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
         new GMapV2DirectionAsyncTask(handler, sourcePosition, destPosition, GMapV2Direction.MODE_WALKING).execute();
     }
 
-    private void initiateMap() {
+    private void initiateMap(Bundle savedInstanceState) {
+        mMapView = (MapView) findViewById(R.id.map);
+        mMapView.onCreate(savedInstanceState);
+        mMapView.onResume();// needed to get the map to display immediately
+        try {
+            MapsInitializer.initialize(getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         map = mMapView.getMap();
         map.setMyLocationEnabled(true);
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         map.getUiSettings().setZoomControlsEnabled(true);
     }
 
+
     @Override
-    public void onLocationChanged(Location location) {
-        if (location != null) {
-           //  tvInfo.setText("Location onChanged"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
-            Log.d("Location Changed", location.getLatitude() + " and " + location.getLongitude());
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            mLocationManager.removeUpdates(this);
+    public void onConnected(Bundle bundle) {
+     mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (mLastLocation != null) {
+        //  tvInfo.setText(mLastLocation.getLatitude() +"   "+String.valueOf(mLastLocation.getLongitude()));
+            sourcePosition= new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+            route(sourcePosition, destPosition);
+        }else {
+                         //   Intent i = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                         //   startActivity(i);
+                map.addMarker(new MarkerOptions().position(destPosition).title("Destination"));
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(destPosition, 15.0f));
         }
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
 
     }
 
     @Override
-    public void onProviderEnabled(String provider) {
+    public void onConnectionSuspended(int i) {
 
     }
 
+
+
     @Override
-    public void onProviderDisabled(String provider) {
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+    @Override
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+    @Override
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
 
     }
 }

@@ -115,10 +115,10 @@ public class UniversityMenu extends AppCompatActivity {
                                 "<br>" +
                                 "To get it you must:<br>" +
                                 "\t \u2022 Go Questura office <br>" +
-                                "\t • Give them you passport<br>" +
+                                "\t • Give them your passport<br>" +
                                 " \t • Then you receive the document with your code and password.<br>" +
                                 "<br>" +
-                                "If you have some problems, go to faculty coordinator and ask him/her, because he/she is the responsible to register in this system before you come.<br>" +
+                                "If you have some problems, go to the faculty coordinator and ask him/her, because he/she is the responsible to register in this system before you come.<br>" +
                                 "This process is the same to students with scholarship or not.<br>" +
                                 "<br>" +
                                 "Map questura office<br>");
