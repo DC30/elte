@@ -149,9 +149,8 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         if (location != null) {
-             tvInfo.setText("Location onChanged"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
+           //  tvInfo.setText("Location onChanged"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
             Log.d("Location Changed", location.getLatitude() + " and " + location.getLongitude());
-            sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
