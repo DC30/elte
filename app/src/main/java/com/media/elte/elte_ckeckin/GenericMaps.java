@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -56,11 +57,12 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
         info = extras.getString("INFO");
         // this is used to set the title
         if(title != null)
-        toolbar.setTitle(title);
+         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
 
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         tvInfo = (TextView) findViewById(R.id.tvInfo);
+        tvInfo.setMovementMethod(LinkMovementMethod.getInstance());
         if (info != null )
         tvInfo.setText(Html.fromHtml(info));
 
@@ -76,7 +78,7 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
 
         initiateMap();
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+       if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -90,18 +92,19 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
         if(location != null ) {
             // Do something with the recent location fix
             //  otherwise wait for the update below
-          //  tvInfo.setText("Location !!! Changed"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
-
+          // tvInfo.setText("Location !!! Changed"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
+          sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
         }
         else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
+       //   sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
         }
-       sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
+     //
         // this was used to test location from uni
-     //   sourcePosition= new LatLng(47.472594,19.059733);
+  //    sourcePosition= new LatLng(47.472594,19.059733);
+        if (sourcePosition != null && destPosition != null)
+           route(sourcePosition,destPosition);
 
-        route(sourcePosition,destPosition);
     }
 
     protected void route(LatLng sourcePosition, LatLng destPosition) {
@@ -146,8 +149,9 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         if (location != null) {
-            // tvInfo.setText("Location Changed"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
+             tvInfo.setText("Location onChanged"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
             Log.d("Location Changed", location.getLatitude() + " and " + location.getLongitude());
+            sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
