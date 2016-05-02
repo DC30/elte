@@ -118,14 +118,11 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         extras.clear();
                         // this is used same as map key <=> value
                         extras.putString("TITLE","Application form");
-                        extras.putDouble("LAT", 47.499425);
-                        extras.putDouble("LNG",19.055139);
-                        extras.putString("INFO","this is a long text just to see how it work" +
-                                "  \nthis is a long text just to see how it work \n" +
-                                "this is a long text just to see how it work\n" +
-                                "this is a long text just to see how it work\n" +
-                                "this is a long text just to see how it work\n" +
-                                "this is a long text just to see how it work ");
+                        extras.putDouble("LAT",47.492356);
+                        extras.putDouble("LNG",19.0560739);
+                        extras.putString("INFO","<b>Just for the First Time and if you don’t have D-Visa</b>" +
+                            "<p>You need fill it in the next form.</p>" +
+                            "<a href=\"http://www.bmbah.hu/images/formanyomtatvanyok-teljes/ENG/pdf/Residence%20Permit%20for%20the%20Purpose%20of%20Studies.pdf\">Application Form</a>");
                        // here the bundle is attached to the intent
                         i.putExtras(extras);
                         startActivity(i);
@@ -135,9 +132,11 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         extras.clear();
                         // this is used same as map key <=> value
                         extras.putString("TITLE","Data Sheet");
-                        extras.putDouble("LAT", 47.499425);
-                        extras.putDouble("LNG",19.055139);
-                        extras.putString("INFO","test 2 ");
+                        extras.putDouble("LAT", 47.492356);
+                        extras.putDouble("LNG",19.0560739);
+                        extras.putString("INFO","<p>If you have already applied for a residence permit and you have a D-visa.</p>" +
+                             "<p>You need to fill the next form.</p>" +
+                             "<a href=\"http://csfhungary.hu/wp-content/uploads/2014/08/Datasheet-for-residence-permit.pdf\">Residence Permit DataSheet</a>");
                         // here the bundle is attached to the intent
                         i.putExtras(extras);
                         startActivity(i);
@@ -183,15 +182,15 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         extras.clear();
                         // this is used same as map key <=> value
                         extras.putString("TITLE","Accom. Report. Form");
-                        extras.putDouble("LAT", 47.499425);
-                        extras.putDouble("LNG",19.055139);
-                        extras.putString("INFO","The form that you must and ask your dormitory " +
-                                "/landlord/ agent to sign it before you go to the Office! You can " +
-                                "ask one for the faculty coordinator or you must collect it from the " +
-                                "immigration offices or in Elte International office.\n" +
-                                "Please fill out the entire form and then you need get the signature. " +
-                                "If you live in a dormitory this form should sign for the administrator " +
-                                "of the dormitory, if you live in a flat the signature must be of the landlord");
+                        extras.putDouble("LAT",47.492356);
+                        extras.putDouble("LNG",19.0560739);
+                        extras.putString("INFO","<p style=\"text-align:justify\">Please ask for an empty " +
+                                "form to your faculty coordinator or at ELTE International office. Please " +
+                                "fill out the entire form and then you need to get the signature. If you live " +
+                                "in a dormitory this form should be signed by the administrator of the dormitory, " +
+                                "if you live in a flat the signature must be of the landlord.</p>" +
+                                "<b>More information:</b><br>" +
+                                "<a href=\"http://www.elte.hu/en/visa\"> http://www.elte.hu/en/visa</a>");
                         // here the bundle is attached to the intent
                         i.putExtras(extras);
                         startActivity(i);
@@ -199,6 +198,20 @@ public class ResidencePermitMenu extends AppCompatActivity {
                     case "Financial Condition":
                         i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Financial Condition");
+                        extras.putDouble("LAT",47.492356);
+                        extras.putDouble("LNG",19.0560739);
+                        extras.putString("INFO","<p style=\"text-align:justify\"><b>Scholarship.- </b>" +
+                                "You need to show them the certificate of your scholarship.</p>" +
+                                "<p style=\"text-align:justify\"><b>Non-Scholarship.- </b>" +
+                                "You need to show them your bank account statement, or a bank account " +
+                                "statement of your guardian and a declaration from your parents that " +
+                                "they support you in a financial way, etc.</p>" +
+                                "<b>More information:</b><br>" +
+                                "<a href=\"http://www.elte.hu/en/visa\"> http://www.elte.hu/en/visa</a>");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "Voluntary Leave Decl.":
@@ -216,6 +229,22 @@ public class ResidencePermitMenu extends AppCompatActivity {
                     case "Health Insurance":
                         i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Health Insurance");
+                        extras.putDouble("LAT",47.492356);
+                        extras.putDouble("LNG",19.0560739);
+                        extras.putString("INFO","<p style=\"text-align:justify\">Any health insurance valid in the territory of EU.</p>" +
+                                "<p style=\"text-align:justify\"><b>Scholarship.- </b>" +
+                                "If you have scholarship, ELTE International office will give you this document.</p>" +
+                                "<p style=\"text-align:justify\"><b>Non-Scholarship.- </b>" +
+                                "You have to make an appointment with health insurance staff (She/He will come to the " +
+                                "university) and talk to you, ask you some questions, then he/she will provide you the " +
+                                "health insurance paper.</p>" +
+                                "<p><b>NB.- You will need your passport.</b></p>" +
+                                "<b>More information:</b><br>" +
+                                "<a href=\"http://www.elte.hu/en/visa\"> http://www.elte.hu/en/visa</a>");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "Residence Permit Decl.":
@@ -236,6 +265,21 @@ public class ResidencePermitMenu extends AppCompatActivity {
                     case "Fee":
                         i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Fee");
+                        extras.putDouble("LAT", 47.492356);
+                        extras.putDouble("LNG",19.0560739);
+                        extras.putString("INFO","<p style=\"text-align:justify\"><b>Scholarship.- </b>" +
+                                "Students with Hungarian governmental scholarship, e.g. Stipendium " +
+                                "Hungaricum, do not need to pay for the fee stamps, in this case please " +
+                                "bring with you any scholarship certificate, e.g. Letter of Award " +
+                                "as a Stipendium Hungaricum student!</p>" +
+                                "<p style=\"text-align:justify\"><b>Non-scholarship.- </b>" +
+                                "The fee stamps can be bought at any larger Hungarian post office. " +
+                                "Please note that stamp duties cannot be purchased on location. Please " +
+                                "request more information before you purchase the stamp.</p>");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                 }
