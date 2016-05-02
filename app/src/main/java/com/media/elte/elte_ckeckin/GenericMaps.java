@@ -93,15 +93,16 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
             // Do something with the recent location fix
             //  otherwise wait for the update below
           // tvInfo.setText("Location !!! Changed"+location.getLatitude() + " and " + location.getLongitude() +"  AT" + location.getTime());
-          sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
+          //sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
         }
         else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-       //   sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
+
         }
      //
         // this was used to test location from uni
   //    sourcePosition= new LatLng(47.472594,19.059733);
+        sourcePosition= new LatLng(location.getLatitude(),location.getLongitude());
         if (sourcePosition != null && destPosition != null)
            route(sourcePosition,destPosition);
 
