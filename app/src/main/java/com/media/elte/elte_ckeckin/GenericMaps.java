@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -36,9 +37,10 @@ public class GenericMaps extends ActionBarActivity implements
     private GoogleMap map;
     MapView mMapView;
     LatLng sourcePosition, destPosition;
-    String title, info;
+    String title, info, showMap;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    boolean bShowMap = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,14 @@ public class GenericMaps extends ActionBarActivity implements
                 extras.getDouble("LNG"));
         title = extras.getString("TITLE");
         info = extras.getString("INFO");
+        showMap = extras.getString("SHOWMAP");
+
+        if (showMap == null)
+            bShowMap = true;
+        else
+            bShowMap = Boolean.getBoolean(showMap);
+
+
         // this is used to set the title
         if (title != null)
             toolbar.setTitle(title);
@@ -60,11 +70,11 @@ public class GenericMaps extends ActionBarActivity implements
 
         tvInfo = (TextView) findViewById(R.id.tvInfo);
         tvInfo.setMovementMethod(LinkMovementMethod.getInstance());
-       if (info != null )
-        tvInfo.setText(Html.fromHtml(info));
+        if (info != null )
+            tvInfo.setText(Html.fromHtml(info));
 
         initiateMap(savedInstanceState);
-         createGoogleApi();
+        createGoogleApi();
 
     }
 
@@ -97,7 +107,7 @@ public class GenericMaps extends ActionBarActivity implements
                     map.addPolyline(rectLine);
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(rectLine.getPoints().get(0), 15.0f));
                     if (destPosition!= null)
-                    map.addMarker(new MarkerOptions().position(destPosition).title("Destination"));
+                        map.addMarker(new MarkerOptions().position(destPosition).title("Destination"));
 
                     //  tvInfo.setText("DURATION" + md.getDurationText(doc));
 
@@ -115,36 +125,45 @@ public class GenericMaps extends ActionBarActivity implements
     private void initiateMap(Bundle savedInstanceState) {
         mMapView = (MapView) findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
-        mMapView.onResume();// needed to get the map to display immediately
-        try {
-            MapsInitializer.initialize(getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
         map = mMapView.getMap();
-        map.setMyLocationEnabled(true);
-        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        map.getUiSettings().setZoomControlsEnabled(true);
+        if (bShowMap)
+        {
+            mMapView.onResume();// needed to get the map to display immediately
+            try {
+                MapsInitializer.initialize(getApplicationContext());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            map.setMyLocationEnabled(true);
+            map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            map.getUiSettings().setZoomControlsEnabled(true);
+            mMapView.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            mMapView.setVisibility(View.GONE);
+        }
     }
 
 
     @Override
     public void onConnected(Bundle bundle) {
-     mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
-        //  tvInfo.setText(mLastLocation.getLatitude() +"   "+String.valueOf(mLastLocation.getLongitude()));
-            sourcePosition= new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
-            route(sourcePosition, destPosition);
-        }else {
-                         //   Intent i = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                         //   startActivity(i);
+        if (bShowMap)
+        {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                    mGoogleApiClient);
+            if (mLastLocation != null) {
+                //  tvInfo.setText(mLastLocation.getLatitude() +"   "+String.valueOf(mLastLocation.getLongitude()));
+                sourcePosition= new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+                route(sourcePosition, destPosition);
+            }else {
+                //   Intent i = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                //   startActivity(i);
                 map.addMarker(new MarkerOptions().position(destPosition).title("Destination"));
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(destPosition, 15.0f));
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(destPosition, 15.0f));
+            }
         }
-
     }
 
     @Override
@@ -160,13 +179,13 @@ public class GenericMaps extends ActionBarActivity implements
     }
     @Override
     protected void onStart() {
-        mGoogleApiClient.connect();
-        super.onStart();
+            mGoogleApiClient.connect();
+            super.onStart();
     }
     @Override
     protected void onStop() {
-        mGoogleApiClient.disconnect();
-        super.onStop();
+            mGoogleApiClient.disconnect();
+            super.onStop();
     }
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
