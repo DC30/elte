@@ -14,6 +14,7 @@ import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -61,7 +62,7 @@ public class GenericMaps extends AppCompatActivity implements LocationListener {
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         tvInfo = (TextView) findViewById(R.id.tvInfo);
         if (info != null )
-        tvInfo.setText(info);
+        tvInfo.setText(Html.fromHtml(info));
 
         mMapView = (MapView) findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
