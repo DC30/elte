@@ -111,6 +111,7 @@ public class ResidencePermitMenu extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                i = new Intent();
                 switch (text[+position]) {
                     case "Application Form":
                         i.setClass(thisInstance, GenericMaps.class);
@@ -143,14 +144,38 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         break;
                     case "Passport":
                         i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Passport");
+                        extras.putDouble("LAT", 47.500061);
+                        extras.putDouble("LNG",19.055139);
+                        extras.putString("INFO", "Bring your passport and take a copy of it. ");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "Photo":
                         i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Photo");
+                        extras.putDouble("LAT", 47.500061);
+                        extras.putDouble("LNG",19.080257);
+                        extras.putString("INFO", "You must bring your photo or you can take the picture at the immigration office. Note that it is not free ");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "School Attend. Cert.":
                         i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","School attendance certificate");
+                        extras.putDouble("LAT", 47.500061);
+                        extras.putDouble("LNG",19.055139);
+                        extras.putString("INFO", "This document must give you the coordinator of you faculty or coordinator of you bachelor or master degree. Please ask them for this document. ");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "Accom. Report. Form":
@@ -173,22 +198,44 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         break;
                     case "Financial Condition":
                         i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
                         startActivity(i);
                         break;
                     case "Voluntary Leave Decl.":
                         i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Voluntary Leave Declaration");
+                        extras.putDouble("LAT", 47.492356);
+                        extras.putDouble("LNG",19.0560739);
+                        extras.putString("INFO","Fill the form when you are at the Office of Immigration and Nationality");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "Health Insurance":
                         i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
                         startActivity(i);
                         break;
                     case "Residence Permit Decl.":
                         i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Receive your residence permit ");
+                        extras.putDouble("LAT", 47.492356);
+                        extras.putDouble("LNG",19.0560739);
+                        extras.putString("INFO", "• This is a declaration of how would you like to receive your residence permit. " +
+                                "<br>" +
+                                "<b>Collection. – </b> have to go back to the office and collect it. For students that had the visa from their home country, generally the residence permit is ready, if not ready, you should pick it up later. <br>" +
+                                "<b>Posta. -</b> You can receive a form and fill it at Office of Immigration and Nationality. Then when the resident card is ready, they send it your home.");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "Fee":
                         i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
                         startActivity(i);
                         break;
                 }

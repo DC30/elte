@@ -54,7 +54,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!--<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBC6vE_j3yGxhiGsBcGDVlb1yM6Xkh7NeQ"/>-->
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDwlR_QvPXKUFvAdm3roSU9Isoytokf8V8"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAUOCRVkqxTPZYkk252-e-t-_x4IOoOTGw"/>
 
     </application>
 
