@@ -113,7 +113,7 @@ public class ResidencePermitMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (text[+position]) {
                     case "Application Form":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
                         // this is used same as map key <=> value
                         extras.putString("TITLE","Application form");
@@ -130,7 +130,7 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         startActivity(i);
                         break;
                     case "Data Sheet":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
                         // this is used same as map key <=> value
                         extras.putString("TITLE","Data Sheet");
@@ -142,39 +142,53 @@ public class ResidencePermitMenu extends AppCompatActivity {
                         startActivity(i);
                         break;
                     case "Passport":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Photo":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "School Attend. Cert.":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Accom. Report. Form":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
+                        extras.clear();
+                        // this is used same as map key <=> value
+                        extras.putString("TITLE","Accom. Report. Form");
+                        extras.putDouble("LAT", 47.499425);
+                        extras.putDouble("LNG",19.055139);
+                        extras.putString("INFO","The form that you must and ask your dormitory " +
+                                "/landlord/ agent to sign it before you go to the Office! You can " +
+                                "ask one for the faculty coordinator or you must collect it from the " +
+                                "immigration offices or in Elte International office.\n" +
+                                "Please fill out the entire form and then you need get the signature. " +
+                                "If you live in a dormitory this form should sign for the administrator " +
+                                "of the dormitory, if you live in a flat the signature must be of the landlord");
+                        // here the bundle is attached to the intent
+                        i.putExtras(extras);
                         startActivity(i);
                         break;
                     case "Financial Condition":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Voluntary Leave Decl.":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Health Insurance":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Residence Permit Decl.":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Fee":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                 }

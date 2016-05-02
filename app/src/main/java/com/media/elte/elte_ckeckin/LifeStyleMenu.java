@@ -1,18 +1,13 @@
 package com.media.elte.elte_ckeckin;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class LifeStyleMenu extends AppCompatActivity {
 
@@ -108,27 +103,27 @@ public class LifeStyleMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (text[+position]) {
                     case "Market":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "BBK":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Phone number":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Bank Account":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Pubs":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Erasmus":
-                        i.setClass(thisInstance, ApplicationForm.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                 }

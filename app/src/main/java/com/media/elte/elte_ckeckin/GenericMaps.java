@@ -28,7 +28,7 @@ import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 
-public class ApplicationForm extends AppCompatActivity implements LocationListener {
+public class GenericMaps extends AppCompatActivity implements LocationListener {
 
     LocationManager mLocationManager;
     private TextView tvInfo;

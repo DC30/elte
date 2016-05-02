@@ -41,7 +41,7 @@
             android:label="@string/title_activity_residence_permit"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ApplicationForm"
+            android:name=".GenericMaps"
             android:label="@string/title_activity_application_form"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -53,7 +53,9 @@
             android:label="@string/title_activity_life_style_menu"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!--<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBC6vE_j3yGxhiGsBcGDVlb1yM6Xkh7NeQ"/>-->
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDwlR_QvPXKUFvAdm3roSU9Isoytokf8V8"/>
+
     </application>
 
 </manifest>

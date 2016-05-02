@@ -106,23 +106,23 @@ public class UniversityMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (text[+position]) {
                     case "Neptun Code":
-                        i.setClass(thisInstance, NeptunCode.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Nek Number":
-                        i.setClass(thisInstance, NekNumber.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Wifi Connection":
-                        i.setClass(thisInstance, WifiConnection.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Registr. Office":
-                        i.setClass(thisInstance, RegistrationOffice.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                     case "Student Card":
-                        i.setClass(thisInstance, StudentCard.class);
+                        i.setClass(thisInstance, GenericMaps.class);
                         startActivity(i);
                         break;
                 }
