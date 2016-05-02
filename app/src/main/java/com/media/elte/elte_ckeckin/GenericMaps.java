@@ -79,7 +79,7 @@ public class GenericMaps extends ActionBarActivity implements
     }
 
 
-    protected void route(LatLng sourcePosition, LatLng destPosition) {
+    protected void route(LatLng sourcePosition, final LatLng destPosition) {
 
         final Handler handler = new Handler() {
             public void handleMessage(Message msg) {
@@ -96,7 +96,8 @@ public class GenericMaps extends ActionBarActivity implements
 
                     map.addPolyline(rectLine);
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(rectLine.getPoints().get(0), 15.0f));
-
+                    if (destPosition!= null)
+                    map.addMarker(new MarkerOptions().position(destPosition).title("Destination"));
 
                     //  tvInfo.setText("DURATION" + md.getDurationText(doc));
 
