@@ -59,9 +59,10 @@ public class GenericMaps extends ActionBarActivity implements
 
         if (showMap == null)
             bShowMap = true;
-        else
-            bShowMap = Boolean.getBoolean(showMap);
-
+        else if (showMap == "TRUE" || showMap == "True" || showMap == "true")
+            bShowMap = true;
+        else if (showMap == "FALSE" || showMap == "False" || showMap == "false")
+            bShowMap = false;
 
         // this is used to set the title
         if (title != null)
