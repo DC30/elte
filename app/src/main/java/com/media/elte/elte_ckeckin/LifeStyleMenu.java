@@ -163,7 +163,7 @@ public class LifeStyleMenu extends AppCompatActivity {
                         i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
                         // this is used same as map key <=> value
-                        extras.putString("TITLE", "Passport");
+                        extras.putString("TITLE", "Bank Account");
                         extras.putString("SHOWMAP", "FALSE");
                         extras.putString("INFO", "Most banks will allow you to open a basic account with just your passport or national ID card. If you have a rental agreement and proof of employment/earnings then it’s advisable to take these with you. A Hungarian phone number may also be requested to give you access to online banking. " +
                                         "<p>There are lots of banks to choose from:</p>" +
@@ -184,7 +184,7 @@ public class LifeStyleMenu extends AppCompatActivity {
                         i.setClass(thisInstance, GenericMaps.class);
                         extras.clear();
                         // this is used same as map key <=> value
-                        extras.putString("TITLE", "Passport");
+                        extras.putString("TITLE", "Pubs");
                         extras.putString("SHOWMAP", "FALSE");
                         extras.putString("INFO", "Now you’ve got through all the paperwork and hassles of moving to a new country, it’s time to make some friends. There are plenty of expat clubs and hangouts where you can feel less lonely in a new city." +
                                         "<p>To meet people, particularly English speakers and international students, many international students and some locals also hang out at these popular hot spots</p>" +
